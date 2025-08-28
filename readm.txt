@@ -1,0 +1,54 @@
+feng_shui_system/
+├── config/                    # 配置文件目录
+│   ├── feng_shui_knowledge.json    # 风水知识规则库
+│   ├── model_config.yaml           # 模型配置参数
+│   └── preprocess_config.yaml      # 预处理配置参数
+├── data/                      # 数据目录
+│   ├── raw/                   # 原始图像数据
+│   ├── processed/             # 处理后的数据
+│   └── annotations/           # 专家标注数据
+├── models/                    # 模型文件目录
+│   ├── feature_extractors/    # 特征提取模型
+│   ├── trained_models/        # 训练好的风水模型
+│   └── knowledge_base/        # 知识库模型
+├── src/                       # 源代码目录
+│   ├── preprocessing/         # 预处理模块
+│   │   ├── __init__.py
+│   │   ├── image_preprocessor.py
+│   │   └── data_augmentation.py
+│   ├── feature_extraction/    # 特征提取模块
+│   │   ├── __init__.py
+│   │   ├── multi_modal_extractor.py
+│   │   └── custom_layers.py
+│   ├── knowledge_engine/      # 知识引擎模块
+│   │   ├── __init__.py
+│   │   ├── feng_shui_rules.py
+│   │   └── knowledge_graph.py
+│   ├── scoring/               # 评分系统模块
+│   │   ├── __init__.py
+│   │   ├── scoring_system.py
+│   │   └── explanation_generator.py
+│   ├── training/              # 训练模块
+│   │   ├── __init__.py
+│   │   ├── dataset.py
+│   │   ├── trainer.py
+│   │   └── evaluation.py
+│   ├── api/                   # API接口模块
+│   │   ├── __init__.py
+│   │   ├── fastapi_app.py
+│   │   └── gradio_interface.py
+│   ├── utils/                 # 工具函数模块
+│   │   ├── __init__.py
+│   │   ├── visualization.py
+│   │   └── file_utils.py
+│   └── main.py                # 主程序入口
+├── tests/                     # 测试目录
+│   ├── unit_tests/            # 单元测试
+│   └── integration_tests/     # 集成测试
+├── scripts/                   # 脚本目录
+│   ├── train_model.py         # 训练脚本
+│   ├── run_api.py             # 启动API脚本
+│   └── batch_process.py       # 批量处理脚本
+├── requirements.txt           # Python依赖
+├── Dockerfile                 # Docker容器配置
+└── README.md                  # 项目说明文档
