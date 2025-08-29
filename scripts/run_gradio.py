@@ -4,20 +4,19 @@ import os
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-import uvicorn
 from src.main import FengShuiAnalysisPipeline
-from src.api.fastapi_app import create_app
+from src.api.gradio_interface import create_gradio_interface
 
 
 def main():
     # 初始化风水分析管道
     pipeline = FengShuiAnalysisPipeline()
 
-    # 创建FastAPI应用
-    app = create_app(pipeline)
+    # 创建Gradio界面
+    demo = create_gradio_interface(pipeline)
 
     # 启动服务
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    demo.launch(server_name="0.0.0.0", server_port=7860)
 
 
 if __name__ == "__main__":

@@ -7,7 +7,7 @@ data=[f"data/{name}" for name in ["raw/.gitkeep","processed/.gitkeep","annotatio
 models=[f"models/{name}" for name in ["feature_extractors/.gitkeep","trained_models/.gitkeep","knowledge_base/.gitkeep"]]
 
 src_preprocessing=[f"src/preprocessing/{name}" for name in ["__init__.py","image_preprocessor.py","data_augmentation.py"]]
-src_feature_extraction=[f"src/feature_extraction/{name}" for name in ["__init__.py","image_preprocessor.py","custom_layers.py"]]
+src_feature_extraction=[f"src/feature_extraction/{name}" for name in ["__init__.py","multi_modal_extractor.py","custom_layers.py"]]
 src_knowledge_engine=[f"src/knowledge_engine/{name}" for name in ["__init__.py","feng_shui_rules.py","knowledge_graph.py"]]
 src_scoring=[f"src/scoring/{name}" for name in ["__init__.py","scoring_system.py","explanation_generator.py"]]
 src_training=[f"src/training/{name}" for name in ["__init__.py","dataset.py","trainer.py","evaluation.py"]]
@@ -16,7 +16,7 @@ src_utils=[f"src/utils/{name}" for name in ["__init__.py","visualization.py","fi
 src_main=["src/main.py"]
 
 tests=[f"tests/{name}" for name in ["unit_tests/","integration_tests/"]]
-scripts=[f"scripts/{name}" for name in ["train_model.py","run_api.py","batch_process.py"]]
+scripts=[f"scripts/{name}" for name in ["train_model.py","run_api.py","batch_process.py","run_gradio.py"]]
 others=["requirements.txt","Dockerfile","README.md"]
 def creatFilesOrDirectorys(pathNames: List[str]) -> None:
     """

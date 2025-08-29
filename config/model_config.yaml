@@ -1,0 +1,40 @@
+models:
+  scene_classifier:
+    name: "google/vit-base-patch16-224"
+    type: "image-classification"
+
+  semantic_segmenter:
+    name: "nvidia/segformer-b0-finetuned-ade-512-512"
+    type: "image-segmentation"
+
+  object_detector:
+    name: "facebook/detr-resnet-50"
+    type: "object-detection"
+
+  custom_feature_extractor:
+    layers:
+      - type: "conv2d"
+        in_channels: 3
+        out_channels: 64
+        kernel_size: 3
+        padding: 1
+      - type: "relu"
+      - type: "maxpool2d"
+        kernel_size: 2
+      - type: "conv2d"
+        in_channels: 64
+        out_channels: 128
+        kernel_size: 3
+        padding: 1
+      - type: "relu"
+      - type: "maxpool2d"
+        kernel_size: 2
+      - type: "adaptive_avg_pool2d"
+        output_size: [1, 1]
+      - type: "flatten"
+
+training:
+  batch_size: 8
+  learning_rate: 5e-5
+  epochs: 20
+  weight_decay: 0.01

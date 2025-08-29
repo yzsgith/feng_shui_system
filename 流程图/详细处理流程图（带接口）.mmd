@@ -1,0 +1,44 @@
+graph TD
+    A[输入图像<br>文件路径或PIL图像] --> B[图像预处理模块<br>preprocess方法]
+    B -->|预处理后的图像张量| C[EXIF数据提取<br>_extract_exif_data方法]
+    B -->|标准化后的图像| D[图像增强与标准化<br>transform方法]
+
+    D -->|处理后的图像| E[多模态特征提取<br>forward方法]
+
+    subgraph 特征提取引擎
+        E -->|场景分类概率| F[场景分类特征<br>scene_model]
+        E -->|分割掩码| G[语义分割特征<br>segmentation_model]
+        E -->|检测框与类别| H[目标检测特征<br>detection_model]
+        E -->|自定义特征向量| I[自定义风水特征<br>custom_extractor]
+    end
+
+    F -->|特征向量| J[特征融合<br>concat操作]
+    G -->|特征向量| J
+    H -->|特征向量| J
+    I -->|特征向量| J
+
+    J -->|融合特征向量| K[风水规则应用<br>apply_rules方法]
+
+    subgraph 规则应用引擎
+        K -->|山水区域掩码| L[山水平衡分析<br>_calculate_mountain_water_balance]
+        K -->|建筑物方向| M[建筑朝向分析<br>_calculate_building_orientation]
+        K -->|环境和谐度| N[环境和谐分析<br>_calculate_environment_harmony]
+        K -->|能量流估计| O[能量流动分析<br>_calculate_energy_flow]
+        K -->|五行元素分布| P[五行平衡分析<br>_calculate_five_elements_balance]
+        K -->|构图评估| Q[整体构图分析<br>_calculate_overall_composition]
+    end
+
+    L -->|山水得分| R[规则分数计算<br>apply_rules返回]
+    M -->|朝向得分| R
+    N -->|和谐得分| R
+    O -->|能量得分| R
+    P -->|五行得分| R
+    Q -->|构图得分| R
+
+    R -->|各规则原始得分| S[加权综合评分<br>calculate_comprehensive_score]
+    S -->|加权后得分| T[风水等级判定<br>_get_score_grade]
+    T -->|等级标签| U[生成解释性报告<br>generate_explanation_report]
+    U -->|结构化JSON报告| V[可视化结果输出<br>visualize_feng_shui_analysis]
+
+    W[风水知识库<br>JSON配置] -->|规则定义| K
+    X[模型参数<br>YAML配置] -->|模型选择| E

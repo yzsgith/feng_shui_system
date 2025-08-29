@@ -1,0 +1,51 @@
+{
+  "rules": {
+    "mountain_water_balance": {
+      "description": "山水平衡原则",
+      "weight": 0.25,
+      "parameters": {
+        "ideal_ratio": 0.6,
+        "tolerance": 0.2
+      }
+    },
+    "building_orientation": {
+      "description": "建筑坐向原则",
+      "weight": 0.2,
+      "parameters": {
+        "ideal_directions": ["north", "south", "east", "west"],
+        "avoid_directions": ["northeast", "southwest"]
+      }
+    },
+    "environment_harmony": {
+      "description": "环境和谐原则",
+      "weight": 0.15
+    },
+    "energy_flow": {
+      "description": "能量流动原则",
+      "weight": 0.2
+    },
+    "five_elements_balance": {
+      "description": "五行平衡原则",
+      "weight": 0.1
+    },
+    "overall_composition": {
+      "description": "整体构图原则",
+      "weight": 0.1
+    }
+  },
+  "element_mapping": {
+    "wood": ["tree", "forest", "plant"],
+    "fire": ["red", "sun", "light"],
+    "earth": ["mountain", "hill", "ground"],
+    "metal": ["building", "structure", "white"],
+    "water": ["river", "lake", "sea", "blue"]
+  },
+  "score_grading": {
+    "excellent": {"min": 90, "max": 100, "description": "极佳风水"},
+    "very_good": {"min": 80, "max": 89, "description": "上佳风水"},
+    "good": {"min": 70, "max": 79, "description": "良好风水"},
+    "average": {"min": 60, "max": 69, "description": "一般风水"},
+    "needs_attention": {"min": 50, "max": 59, "description": "需要注意"},
+    "poor": {"min": 0, "max": 49, "description": "风水不佳"}
+  }
+}

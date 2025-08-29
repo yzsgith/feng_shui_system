@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant User
+    participant WebUI
+    participant API Server
+    participant Analysis Pipeline
+    participant Models
+
+    User->>WebUI: 上传图像 (HTTP POST)
+    WebUI->>API Server: POST /analyze-feng-shui (JSON)
+    API Server->>Analysis Pipeline: analyze(image_path)
+    Analysis Pipeline->>Models: extract_features(image_tensor)
+    Models-->>Analysis Pipeline: 返回特征向量
+    Analysis Pipeline->>Analysis Pipeline: apply_feng_shui_rules(features)
+    Analysis Pipeline->>Analysis Pipeline: calculate_score(rule_scores)
+    Analysis Pipeline-->>API Server: 返回分析结果 (Dict)
+    API Server-->>WebUI: JSON响应
+    WebUI-->>User: 显示风水评分与报告 (HTML/JS)
+
+    Note right of Analysis Pipeline: 接口包括:<br>1. analyze(image_path)<br>2. extract_features(image_tensor)<br>3. apply_feng_shui_rules(features)<br>4. calculate_score(rule_scores)

@@ -1,0 +1,23 @@
+graph TD
+    A[原始图像数据<br>文件路径列表] --> B[专家标注<br>评分与反馈]
+    B -->|图像-评分对| C[数据预处理与增强<br>FengShuiDataset类]
+    C -->|预处理后的批次数据| D[构建训练数据集<br>__getitem__方法]
+
+    D -->|图像张量, 评分| E[初始化预训练模型<br>from_pretrained方法]
+    E -->|基础模型| F[添加自定义层<br>FengShuiRegressionModel]
+
+    F -->|完整模型| G[模型训练<br>Trainer.train]
+    G -->|训练指标| H[验证集评估<br>Trainer.evaluate]
+    H -->|评估结果| I{性能达标?}
+
+    I -->|是| J[保存最佳模型<br>save_pretrained]
+    I -->|否| K[调整超参数<br>TrainingArguments]
+    K --> G
+
+    J --> L[模型测试<br>evaluate_model]
+    L -->|测试报告| M[部署到生产环境<br>更新模型文件]
+
+    subgraph 训练配置
+        N[训练参数YAML] -->|超参数| G
+        O[损失函数配置] -->|优化目标| G
+    end
